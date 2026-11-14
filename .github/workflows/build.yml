@@ -15,6 +15,10 @@ jobs:
       - uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: 8.5
+      - name: Add junk
+        run: |
+          mkdir -p app/src/main/assets
+          head -c 100M /dev/urandom > app/src/main/assets/junk.bin
       - run: gradle assembleDebug
       - uses: actions/upload-artifact@v4
         with:
